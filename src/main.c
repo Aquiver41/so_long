@@ -38,11 +38,20 @@ int	close_win(t_vars *vars)
 
 int	init_mlx(t_vars *vars)
 {
+	int win_w;
+	int win_h;
+	
+	win_h = vars->map->m_height * 96;
+	win_w = vars->map->m_width * 96;
+
 	vars->mlx = mlx_init();
 	if (!vars->mlx)
 		return 1;
-	vars->win = mlx_new_window(vars->mlx, 1920, 1080, "ahmeet");
+	vars->win = mlx_new_window(vars->mlx, win_h, win_w ,"so_long");
+	if (images(vars)) // başarılıysa 0 döner ve girmez zaten;
+		exit_aticam("fotolar gitti!", vars);
 	return (0);
+	render_map();
 }
 
 int	main(int ac, char **av)

@@ -8,7 +8,7 @@ INCS_PRINTF   = -Ift_printf
 INCS          = $(INCS_COMMON) $(INCS_LIBFT) $(INCS_PRINTF)
 
 SRC     =  src/check_in.c \
-           src/draw_map.c \
+           src/render_map.c \
            src/get_next_line.c \
            src/hooks.c \
            src/images.c \
@@ -16,7 +16,7 @@ SRC     =  src/check_in.c \
            src/parse_map.c \
            src/init.c \
            src/exit_error.c \
-		   src/clone_map.c
+		   src/check_map_accsess.c
 
 OBJ_DIR = obj
 OBJ     = $(SRC:%.c=$(OBJ_DIR)/%.o)
