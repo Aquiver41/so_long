@@ -47,11 +47,11 @@ int	init_mlx(t_vars *vars)
 	vars->mlx = mlx_init();
 	if (!vars->mlx)
 		return 1;
-	vars->win = mlx_new_window(vars->mlx, win_h, win_w ,"so_long");
+	vars->win = mlx_new_window(vars->mlx, win_w, win_h ,"so_long");
 	if (images(vars)) // başarılıysa 0 döner ve girmez zaten;
 		exit_aticam("fotolar gitti!", vars);
+	render_map(vars);
 	return (0);
-	render_map();
 }
 
 int	main(int ac, char **av)

@@ -56,5 +56,5 @@ int read_file_map(char *map);
 char **clone_map(t_vars *vars);
 void check_map_acces(t_vars *vars);
 int images(t_vars *vars);
-
+void render_map(t_vars *vars);
 #endif
