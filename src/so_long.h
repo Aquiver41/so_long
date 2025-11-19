@@ -40,6 +40,7 @@ typedef struct s_vars {
 	int p_height; // player height
 	int p_width;
 	int movement;
+	int c_c;
 	t_img img;
 }	t_vars;
 
@@ -56,5 +57,6 @@ int read_file_map(char *map);
 char **clone_map(t_vars *vars);
 void check_map_acces(t_vars *vars);
 int images(t_vars *vars);
+int key_press(int key, t_vars *vars);
 void render_map(t_vars *vars);
 #endif

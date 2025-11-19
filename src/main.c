@@ -16,10 +16,25 @@ void	exit_aticam(char *message, t_vars *vars)
 	exit(1);
 }
 
-int	key_press(int keycode, t_vars *vars)
+void move(int keycode , t_vars *vars)
 {
-	if (keycode == 65307)
+	if (keycode == 119 || keycode == 65362)
+        vars->p_height--;
+	if (keycode == 115 || keycode == 65364)
+        vars->p_height++;
+	if (keycode == 97 || keycode == 65361)
+        vars->p_width--;
+	if (keycode == 100 || keycode == 65363)
+        vars->p_width++;
+}
+
+int	key_press(int key, t_vars *vars)
+{
+	if (key == 65307)
 		close_win(vars);
+	if (key == 119 || key == 115 || key == 97 || key == 100
+        || key == 65362 || key == 65364 || key == 65361 || key == 65363)
+        	move(key, vars);
 	return (0);
 }
 
@@ -54,6 +69,14 @@ int	init_mlx(t_vars *vars)
 	return (0);
 }
 
+/* int new_mlx(t_vars *vars)
+{
+	render_map(vars);
+	mlx_put_image_to_window(vars->mlx, vars->win, NULL, vars->p_width
+		* 96, vars->p_height * 96);
+	return (0);
+} */
+
 int	main(int ac, char **av)
 {
     t_vars * vars;
@@ -69,7 +92,8 @@ int	main(int ac, char **av)
 		free(vars);
 		return 1;
 	}
-	mlx_hook(vars->win, 2, 1L << 0, key_press, vars);
+	mlx_key_hook(vars->win, key_press, vars);
 	mlx_hook(vars->win, 17, 0, close_win, vars);
+	//mlx_loop_hook(vars->mlx, new_mlx , vars);
 	mlx_loop(vars->mlx);
 }

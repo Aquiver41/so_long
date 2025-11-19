@@ -16,16 +16,16 @@ void render_map(t_vars *vars)
         mlx_put_image_to_window(vars->mlx, vars->win, vars->img.floor, x * 96, y * 96);
         if (c == '1')
             mlx_put_image_to_window(vars->mlx, vars->win, vars->img.wall, 
-                x * 64, y * 64);
+                x * 96, y * 96);
         else if (c == 'C')
             mlx_put_image_to_window(vars->mlx, vars->win,vars->img.colletibiles,
-                x * 64, y * 64);   
+                x * 96, y * 96);   
         else if (c == 'E')
             mlx_put_image_to_window(vars->mlx, vars->win, vars->img.exit, 
-                x * 64, y * 64);
+                x * 96, y * 96);
         else if (c == 'P')
             mlx_put_image_to_window(vars->mlx, vars->win, vars->img.player, 
-                x * 64, y * 64);
+                x * 96, y * 96);
         x++;
         }
     y++;
