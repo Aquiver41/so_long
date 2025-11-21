@@ -75,7 +75,7 @@ static char	*ft_after_nl(char *str)
 	}
 	if (str[i] == '\n')
 		i++;
-	ft_strlcpy(str, tmp, i);
+	ft_strlcpy(tmp, str + i, ft_strlen(str + i) + 1);
 	free(str);
 	return (tmp);
 }

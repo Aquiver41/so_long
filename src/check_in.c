@@ -79,8 +79,6 @@ void	m_scaling(t_vars **vars)
 		i++;
 	(*vars)->map->m_height = i;
 	(*vars)->map->m_width = ft_strlen((*vars)->map->map[0]);
-	printf("map height (rows): %d\n", (*vars)->map->height); // manuel debug yaptım hatam var 
-    printf("map width  (cols): %d\n", (*vars)->map->width);
 }
 
 void	p_scaling(t_vars **vars)

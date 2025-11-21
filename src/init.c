@@ -116,17 +116,17 @@ static void load_map(const char *map, t_vars *vars, int height)
     }
     i = 0;
     line = get_next_line(fd);
-    printf("*%s*\n", line);
+    // printf("*%s*\n", line);
     while (line)
     {
-        vars->map->map[i] = ft_strdup(line); // strdup hatalı olabilir bak.
+        vars->map->map[i] = line; // strdup hatalı olabilir bak.
         i++;
         line = get_next_line(fd);
-        printf("*%s*\n", line);
+        // printf("*%s*\n", line);
     }
     vars->map->map[i] = NULL;
-    for (int j = 0; vars->map->map[j]; j++)
-        printf("<%s>\n",  vars->map->map[j]);
+    // for (int j = 0; vars->map->map[j]; j++)
+    //     printf("<%s>\n",  vars->map->map[j]);
     close(fd);
     mapi_check_ediyoruz(vars);
 }
@@ -147,7 +147,7 @@ void    vars_init(const char *map, t_vars **vars)
     load_map(map, (*vars), height);
     if (!(*vars)->map || !(*vars)->map->map) // sonra tekrar kontrol et
         exit_aticam("map yükleme hatası!", *vars);
-    index_counter((*vars), 'C'); // bak 
+    (*vars)->c_c = index_counter((*vars), 'C'); // bak 
     if (!vars)
         exit_aticam("coin yok aq!", *vars);
     (*vars)->temp_c = (*vars)->collectibles;

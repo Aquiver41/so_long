@@ -1,6 +1,7 @@
 #include "so_long.h"
 #include "mlx.h"
 #include <stdio.h>
+
 int images(t_vars *vars)
 {
     vars->img.wall = mlx_xpm_file_to_image(vars->mlx, "img/wall.xpm" , &vars->img.img_h, &vars->img.img_w);

@@ -17,7 +17,7 @@ char **clone_map(t_vars *vars)
         clone[i] = ft_strdup(vars->map->map[i]);
         if (!clone[i])
             exit_aticam("oluşmadı",vars);
-    i++;
+        i++;
     }
     clone[i] = NULL;
     
@@ -44,6 +44,19 @@ void flood_fill(char **clone, int y, int x, t_vars *vars) // oyuncunun satırı 
     flood_fill(clone, y, x - 1, vars); // sol
 }
 
+static void free_clone_map(char **clone)
+{
+    int i;
+
+    i = 0;
+    while (clone[i])
+    {
+        free(clone[i]);
+        i++;
+    }
+    free(clone);
+}
+
 void check_clone_acsess(char **clone ,t_vars *vars) // her yere gidebiliyorsa oyuncu içinde c ve e kalmamalı burad onun kontrolünü yapacğım. vars hatalı maptir exitatıcam
 {
     int y;
@@ -56,29 +69,20 @@ void check_clone_acsess(char **clone ,t_vars *vars) // her yere gidebiliyorsa oy
         while (clone[y][x])
         {
             if (clone[y][x] == 'C' || clone[y][x] == 'E')
+            {
+                free_clone_map(clone);
                 exit_aticam("The map is not suitable!", vars);
+            }
             x++;
         }
         y++;    
     }
 }
 
-void free_clone_map(char **clone, int h)
-{
-    int i;
-
-    i = 0;
-    while (i < h)
-    {
-        free(clone[i]);
-        i++;
-    }
-    free(clone);
-}
-
 void check_map_acces(t_vars *vars)
 {
     char **clone;
+
     clone = clone_map(vars); // kopya oluştur
     flood_fill(clone, vars->p_height, vars->p_width,vars); // clone mapte oyuncunun gidebildiği yerleri işaretle
     /*        printf("CLONE AFTER FLOOD:\n");
@@ -89,5 +93,5 @@ void check_map_acces(t_vars *vars)
         i++;
     } */
     check_clone_acsess(clone, vars); // oyuncu gidebiliypr mu bak gidemiyorsa exit at
-    free_clone_map(clone, vars->map->m_height); // bütün clone mapin satırlarını freele
+    free_clone_map(clone); // bütün clone mapin satırlarını freele
 }

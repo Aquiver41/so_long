@@ -3,8 +3,9 @@
 
 void render_map(t_vars *vars)
 {
-    int y;
-    int x;
+    int     y;
+    int     x;
+    char    c;
 
     y = 0;
     while (y < vars->map->m_height)
@@ -12,22 +13,17 @@ void render_map(t_vars *vars)
         x = 0;
         while(x < vars->map->m_width)
         {
-        char c = vars->map->map[y][x];
-        mlx_put_image_to_window(vars->mlx, vars->win, vars->img.floor, x * 96, y * 96);
-        if (c == '1')
-            mlx_put_image_to_window(vars->mlx, vars->win, vars->img.wall, 
-                x * 96, y * 96);
-        else if (c == 'C')
-            mlx_put_image_to_window(vars->mlx, vars->win,vars->img.colletibiles,
-                x * 96, y * 96);   
-        else if (c == 'E')
-            mlx_put_image_to_window(vars->mlx, vars->win, vars->img.exit, 
-                x * 96, y * 96);
-        else if (c == 'P')
-            mlx_put_image_to_window(vars->mlx, vars->win, vars->img.player, 
-                x * 96, y * 96);
-        x++;
+            c = vars->map->map[y][x];
+            if (c == '1')
+                mlx_put_image_to_window(vars->mlx, vars->win, vars->img.wall, x * 48, y * 48);
+            else
+                mlx_put_image_to_window(vars->mlx, vars->win, vars->img.floor, x * 48, y * 48);
+            if (c == 'E')
+                mlx_put_image_to_window(vars->mlx, vars->win, vars->img.exit, x * 48, y * 48);   
+            else if (c == 'C')
+                mlx_put_image_to_window(vars->mlx, vars->win, vars->img.colletibiles, x * 48, y * 48);
+            x++;
         }
-    y++;
+        y++;
     }
 }

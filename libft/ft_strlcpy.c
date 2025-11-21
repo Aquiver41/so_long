@@ -6,7 +6,7 @@
 /*   By: msancar <msancar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:07:46 by msancar           #+#    #+#             */
-/*   Updated: 2025/11/12 13:18:10 by msancar          ###   ########.fr       */
+/*   Updated: 2025/11/21 15:25:30 by msancar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ size_t	ft_strlcpy(char *dst, char *src, size_t size)
 	size_t	i;
 
 	i = 0;
-	while (dst[size])
+	if (size != 0)
 	{
-		src[i] = dst[size];
-		i++;
-		size++;
+		while (src[i] && i < size -1)
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
 	}
-	dst[i] = '\0';
 	return (ft_strlen(src));
 }
